@@ -1,2 +1,2 @@
-# Guessing Game.
+# Guessing Game
 Java EE project
