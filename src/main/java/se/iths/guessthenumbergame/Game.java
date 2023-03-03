@@ -11,7 +11,7 @@ public class Game {
 
     public Game() {
         Random random = new Random();
-        secretNumber = random.nextInt(1, 100);
+        secretNumber = random.nextInt(1, 10);
     }
 
     public List<String> getList() {
@@ -19,15 +19,16 @@ public class Game {
     }
 
     public String getAnswer(int guess) {
+
         if (secretNumber > guess) {
-            list.add(guess + ": too small");
-            return "Too small";
+            list.add(guess + " too small");
+            return "";
         } else if (secretNumber < guess) {
-            list.add(guess + ": too big");
-            return "Too big";
+            list.add(guess + " too big");
+            return "";
         } else {
             list.clear();
-            return "You win!";
+            return "You win! New game";
         }
     }
 }

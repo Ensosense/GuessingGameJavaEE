@@ -28,10 +28,13 @@ public class GuessTheNumberServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
+        // getParameter är det som klienten skickar till oss, vi hämtar det och förvarar i en variabel. Med hjälp av request vi efterfrågar parametrarna från klienten, i detta fallet guess
         int guess = Integer.parseInt(request.getParameter("guess"));
+
 
         String str = game.getAnswer(guess);
 
+        // Response (ответ) - это объект, который представляет ответ от сервера клиенту
         response.getWriter().println("<html><body>" + str);
 
         for (String s : game.getList()) {
@@ -39,19 +42,20 @@ public class GuessTheNumberServlet extends HttpServlet {
         }
 
         response.getWriter().println("<form method=\"post\" action=\"http://localhost:8080/guess\">\n" +
-                "    <input name=\"guess\" type=\"text\" size=\"8\" value=\"0\"/>\n" +
+                "    <input name=\"guess\" type=\"text\" size=\"8\" value=\"\"/>\n" +
                 "    <br/>\n" +
                 "    <input name=\"submit\" type=\"submit\" value=\"Send\"/>\n" +
                 "    <input type=\"reset\">\n" +
                 "</form> </body> </html>\n"
         );
 
-        if (str.equals("You win!")) {
-            game = new Game();
-            session.setAttribute("game", game);
+        if (str.equals("You win! New game")) {
+                game = new Game();
+                session.setAttribute("game", game);
+            }
         }
     }
-}
+
 
 
 
